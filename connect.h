@@ -25,6 +25,7 @@ public :
 	char pan[17][17][3];
 	void go(int *y, int *x);
 	void first_move(int *y, int *x);
+	void input(int *y, int *x, int turn);
 };
 
 class referee : public setting
