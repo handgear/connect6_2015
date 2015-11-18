@@ -136,21 +136,19 @@ int referee::decideWinner() //승패 결정 함수
 //승리메시지, 다시하기
 int referee::winner_Message(int turn)
 {
-	char player[3][3]={"", "BK", "WH"};   
+	char player[3][3] = { "", "○", "●"};   
 	gotoxy(42, 6);
-	if(turn==2)
+	if(turn==2)//6개 연결이 되었으므로 5개는 1 줄여준다
 	{
 		if(sentfive1!=0)
-			cout <<"5) : BK - "<<sentfive<<" WH - "<<sentfive1-1 ;
+			cout <<"5개 : 흑 - "<<sentfive<<" 백 - "<<sentfive1-1 ;
 	}
-	//백돌 차례에서 백돌의 5연속조합이 0이 아닐경우 5개조합을 1을 감소시켜준다
 	else
 	{
 		if(sentfive!=0)
-			cout <<"5) : BK - "<<sentfive-1<<" WH - "<<sentfive1 ;
+			cout <<"5개 : 흑 - "<<sentfive-1<<" 백 - "<<sentfive1 ;
 	}
-	//흑돌 차례에서 흑돌의 5연속조합이 0이 아닐경우 5개조합을 1을 감소시켜준다
-	gotoxy(0,20);   
+	gotoxy(0,21);   
 	cout<<player[turn]<<"'s WIN. Try again? (y,n)";   
 	
 	fflush(stdin);   
