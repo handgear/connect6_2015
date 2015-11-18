@@ -6,15 +6,15 @@ void main()
 	game om;
 	//game class def
 	int button;
-	cout<<"-------------------------------------------------------------------------------"<<endl;
-	cout<<"==============================================================================="<<endl;
-	cout<<"==    66666    CCCCC    OOOOO    N NNN    N NNN    EEEEE    CCCCC    TTTTT   =="<<endl;
-	cout<<"==    66       CC       OO  O    NN  N    NN  N    EE       CC        TT     =="<<endl;
-	cout<<"==    66666    CC       OO  O    NN  N    NN  N    EEEEE    CC        TT     =="<<endl;
-	cout<<"==    66  6    CC       OO  O    NN  N    NN  N    EE       CC        TT     =="<<endl;
-	cout<<"==    66666    CCCCC    OOOOO    NN  N    NN  N    EEEEE    CCCCC     TT     =="<<endl;
-	cout<<"==============================================================================="<<endl;
-	cout<<"==============================================================================="<<endl;
+	// cout<<"-------------------------------------------------------------------------------"<<endl;
+	// cout<<"==============================================================================="<<endl;
+	// cout<<"==    66666    CCCCC    OOOOO    N NNN    N NNN    EEEEE    CCCCC    TTTTT   =="<<endl;
+	// cout<<"==    66       CC       OO  O    NN  N    NN  N    EE       CC        TT     =="<<endl;
+	// cout<<"==    66666    CC       OO  O    NN  N    NN  N    EEEEE    CC        TT     =="<<endl;
+	// cout<<"==    66  6    CC       OO  O    NN  N    NN  N    EE       CC        TT     =="<<endl;
+	// cout<<"==    66666    CCCCC    OOOOO    NN  N    NN  N    EEEEE    CCCCC     TT     =="<<endl;
+	// cout<<"==============================================================================="<<endl;
+	// cout<<"==============================================================================="<<endl;
 	cout<<"                               1) 1P play"<<endl;
 	cout<<"                               2) 2P play"<<endl;
 	cout<<"                               3) network P2P"<<endl;

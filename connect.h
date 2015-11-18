@@ -20,7 +20,7 @@ public :
 class move : public setting
 {
 public :
-	char pan[19][19][3];
+	char pan[17][17][3];
 	void go(int *y, int *x);
 };
 
@@ -40,7 +40,7 @@ public :
 	}
 	int countSeries(int x, int y, int ax, int ay);
 	int decideWinner(); 
-	int board[19][19]; 
+	int board[17][17]; 
 	int winner_Message(int turn); 
 
 };

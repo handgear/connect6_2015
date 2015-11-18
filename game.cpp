@@ -7,7 +7,7 @@ int game::start()
 	char stone[3][3]={"","●","○"}; // initialize stone
 	map(); 
 	setting::Cursor(); 
-	y=x=9; //initialize to center
+	y=x=8; //initialize to center
 	turn=2;  //first turn is black
 	//turn==1: white, turn==2: black
 	int totalturn=0, turn2=0; //turn2: flag for two turn
@@ -52,31 +52,34 @@ int game::start()
 //print board  
 void game::map()   
 {
-	memset(board, 0, sizeof(int)*19*19); //19x19의 memset배열을 만들어주고 0으로 초기화 해준다.
+	memset(board, 0, sizeof(int)*17*17); //17x17의 memset배열을 만들어주고 0으로 초기화 해준다.
+	//corner
 	strcpy(pan[0][0], "┌");
-	strcpy(pan[0][18] ,"┐");   
-	strcpy(pan[18][0],"└");
-	strcpy(pan[18][18],"┘");   
-	//양 사이드에는 위와같은 문자열로 판을 채워준다.
-	for(y=1; y<18; y++)   
+	strcpy(pan[0][16] ,"┐");   
+	strcpy(pan[16][0],"└");
+	strcpy(pan[16][16],"┘");   
+	//side
+	for(y=1; y<16; y++)   
 	{   
 		strcpy(pan[y][0], "├");
-		strcpy(pan[y][18],"┤");
+		strcpy(pan[y][16],"┤");
 	}   
-	//좌우 끝자락을 제외한 나머지를 위와같은 문자열로 입시킨다.
-	for(x=1; x<18; x++)   
+	//bottom and top
+	for(x=1; x<16; x++)   
 	{   
 		strcpy(pan[0][x], "┬");   
-		strcpy(pan[18][x],"┴");   
+		strcpy(pan[16][x],"┴");   
 	} 
-	//상하 끝자락을 제외한 나머지를 위와같은 문자열로 입시킨다.
-	for(y=1; y<18; y++)     
-		for(x=1; x<18; x++)         
+	//else
+	for(y=1; y<16; y++)     
+		for(x=1; x<16; x++)         
 			strcpy(pan[y][x],"┼");   
-	//나머지 가운데 부분을 +모양으로 다 채워준다.
+	//position number
+	
+
 	system("CLS"); //각각의 부분을 for문을 이용해 채운 배열을 이제 한번에 출력하기 위해 화면에 있는 값을 지워준다.
-	for(y=0; y<19; y++,cout<<endl)
-		for(x=0; x<19; x++)   
+	for(y=0; y<17; y++,cout<<endl)
+		for(x=0; x<17; x++)   
 			cout<<pan[y][x];
 }
 int game::put(int y, int x, int turn)   
