@@ -1,8 +1,10 @@
 #pragma once
 #include <iostream>
+#include <stdlib.h>
 #include <string.h>
 #include <conio.h>  
 #include <windows.h>
+#include <time.h>
 using namespace std;
 #define UP 72
 #define DOWN 80
@@ -22,6 +24,7 @@ class move : public setting
 public :
 	char pan[17][17][3];
 	void go(int *y, int *x);
+	void first_move(int *y, int *x);
 };
 
 class referee : public setting

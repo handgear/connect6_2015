@@ -6,17 +6,12 @@ int game::start()
 {  
 	char stone[3][3]={"","●","○"}; // initialize stone
 	map(); 
-	setting::Cursor(); 
-	y=x=8; //initialize to center
-	turn=2;  //first turn is black
 	//turn==1: white, turn==2: black
-	int totalturn=0, turn2=0; //turn2: flag for two turn
-	setting::gotoxy(x*2,y);  //initialize to center
-	cout<<"GO"; //print "go"
-	setting::gotoxy(0, 20);  //set curser below the board 
-	cout<<stone[turn^=0]<<"turn"; 
-	go(&y, &x); //go 함수 9,9로 이동???
-
+	int totalturn = 0, turn2 = 0; //turn2: flag for two turn
+	turn = 2;  //first turn is black
+	setting::Cursor(); 
+	first_move(&y, &x); //first randum move
+	
 	while(decideWinner() == 0) //yet winner occur 
 	{   
 		if(turn2==1)
@@ -25,8 +20,8 @@ int game::start()
 			turn2=0; //initialize flag
 		}
 		else turn2++;
-		setting::gotoxy(0, 20);   
-		cout<<stone[turn]<<"turn";  
+		setting::gotoxy(0, 21);   
+		cout<<stone[turn]<<"'s turn";  
 		while(!put(y, x, turn))  //put 함수에서 enter치기전까지 커서대로 이동.
 		{   
 			go(&y, &x);   //call by reference로 go 함수에서 받은 좌표값으로 이동,

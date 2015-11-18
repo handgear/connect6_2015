@@ -38,3 +38,9 @@ void move::go(int *y, int *x) // 함수내에서 값 수정 (포인터)
 	}
 
 }
+void move::first_move(int *y, int *x)
+{
+	srand(time(NULL));
+	*x=rand()%7+5;//5~11
+	*y=rand()%7+5;//5~11
+}
