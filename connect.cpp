@@ -3,7 +3,7 @@
 
 void main()
 { 
-	game om;
+	game G1;
 	//game class def
 	int button;
 	// cout<<"-------------------------------------------------------------------------------"<<endl;
@@ -25,7 +25,7 @@ void main()
 	case 1: //AI
 		break;
 	case 2: //use while, after exe start, goto main when game over
-		while(om.start());
+		while(G1.start());
 		main();
 		break;
 	case 3: //network P2P
@@ -34,7 +34,7 @@ void main()
 		break;
 	default:
 		cout<<"select number"<<endl;
-		om.pause(); 
+		G1.pause(); 
 		system("cls"); 
 		main(); 
 	}

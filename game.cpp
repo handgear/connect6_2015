@@ -14,7 +14,7 @@ int game::start()
 	setting::gotoxy(x*2,y);  //initialize to center
 	cout<<"GO"; //print "go"
 	setting::gotoxy(0, 20);  //set curser below the board 
-	cout<<stone[turn^=0]<<"turn"; //
+	cout<<stone[turn^=0]<<"turn"; 
 	go(&y, &x); //go 함수 9,9로 이동???
 
 	while(decideWinner() == 0) //yet winner occur 
@@ -74,13 +74,42 @@ void game::map()
 	for(y=1; y<16; y++)     
 		for(x=1; x<16; x++)         
 			strcpy(pan[y][x],"┼");   
-	//position number
 	
-
 	system("CLS"); //각각의 부분을 for문을 이용해 채운 배열을 이제 한번에 출력하기 위해 화면에 있는 값을 지워준다.
 	for(y=0; y<17; y++,cout<<endl)
 		for(x=0; x<17; x++)   
 			cout<<pan[y][x];
+
+	//position number
+	setting::gotoxy(0, 17);//bottom board number(1st liine)
+	cout << " ";
+	for(int i=1;i<18;i++)
+	{
+		setting::gotoxy(i*2-1, 17);
+		
+		if (i<10)
+			cout<< i; 
+		else
+			cout << '1';
+		
+	}
+	setting::gotoxy(0, 18);//bottom board number(2nd liine)
+	cout << " ";
+	for (int i = 1; i<18; i++)
+	{
+		setting::gotoxy(i * 2 - 1, 18);
+
+		if (i>9)
+			cout << i-10;
+		
+	}
+	for (int i = 1; i<18; i++)//right borad number
+	{
+		setting::gotoxy(34, i-1);
+		cout << i;
+		
+	}
+	
 }
 int game::put(int y, int x, int turn)   
 {
