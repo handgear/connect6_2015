@@ -112,11 +112,11 @@ int referee::decideWinner() //
 	gotoxy(42, 3);
 	cout <<"connect2 : black - "<<two<<" white - "<<two1 ;
 	gotoxy(42, 4);
-	cout <<"connect3 : ○ - "<<three<<" ● - "<<three1 ;
+	cout <<"connect3 : black - "<<three<<" white - "<<three1 ;
 	gotoxy(42, 5);
-	cout <<"connect4 : ○ - "<<four<<" ● - "<<four1 ;
+	cout <<"connect4 : black - "<<four<<" white - "<<four1 ;
 	gotoxy(42, 6);
-	cout <<"connect5 : ○ - "<<five<<" ● - "<<five1 ;
+	cout <<"connect5 : black - "<<five<<" white - "<<five1 ;
 	//
 	sentfive=five;
 	sentfive1=five1;
@@ -142,12 +142,12 @@ int referee::winner_Message(int turn)
 	if(turn==2)
 	{
 		if(sentfive1!=0)
-			cout <<"connect5 : ○ - "<<sentfive<<" ● - "<<sentfive1-1 ;
+			cout <<"connect5 : black - "<<sentfive<<" white - "<<sentfive1-1 ;
 	}
 	else
 	{
 		if(sentfive!=0)
-			cout <<"connect5 : ○ - "<<sentfive-1<<" ● - "<<sentfive1 ;
+			cout <<"connect5 : black - "<<sentfive-1<<" white - "<<sentfive1 ;
 	}
 	gotoxy(0,21);  
 	if (turn==1)
