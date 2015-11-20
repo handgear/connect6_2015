@@ -24,8 +24,7 @@ int game::start()
 		cout<<stone[turn]<<"'s turn";  
 		while(!put(y, x, turn))  //put 함수에서 enter치기전까지 커서대로 이동.
 		{   
-			//go(&y, &x);   //call by reference로 go 함수에서 받은 좌표값으로 이동,
-			input(&y, &x,turn);//input position to move		
+			go(&y, &x);   //call by reference로 go 함수에서 받은 좌표값으로 이동,
 		} 
 		if(turn==1) //turn==white, print num of white stone 
 		{

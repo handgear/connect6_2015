@@ -1,12 +1,12 @@
 #include "connect.h"
 
-//?ÃŒÂµÂ¿Ã‡ÃÂ±Ã¢
-void move::go(int *y, int *x) // Ã‡Ã”Â¼Ã¶Â³Â»Â¿Â¡Â¼Â­ Â°Âª Â¼Ã¶ÃÂ¤ (Ã†Ã·?ÃÃ…Ã)   
+//ÀÌµ¿ÇÏ±â
+void move::go(int *y, int *x) // ÇÔ¼ö³»¿¡¼­ °ª ¼öÁ¤ (Æ÷ÀÎÅÍ)   
 {   
-	int oy=*y, ox=*x;   // ox, oyÂ´Ã‚ ?ÃŒ?Ã¼ ÃÃ‚Ã‡Â¥ 
-	char input;    // Ã…Â°ÂºÂ¸ÂµÃ¥Â·Ã Â¹ÃÂ´Ã‚ input
+	int oy=*y, ox=*x;   // ox, oy´Â ÀÌÀü ÁÂÇ¥ 
+	char input;    // Å°º¸µå·Î ¹Ş´Â input
 
-	while((input=_getch()) != ENTER)   // Enter Ã„Â¡Â±Ã¢ ?Ã¼Â±Ã®ÃÃ¶ ?Ã”Â·Ã‚Â¿Â¡ Â¸Ã‚Â°Ã” ?Â§Ã„Â¡ ?ÃŒÂµÂ¿
+	while((input=_getch()) != ENTER)   // Enter Ä¡±â Àü±îÁö ÀÔ·Â¿¡ ¸Â°Ô À§Ä¡ ÀÌµ¿
 	{   
 		if(input == UP)   
 		{   
@@ -29,12 +29,12 @@ void move::go(int *y, int *x) // Ã‡Ã”Â¼Ã¶Â³Â»Â¿Â¡Â¼Â­ Â°Âª Â¼Ã¶ÃÂ¤ (Ã†Ã·?ÃÃ…Ã
 			oy=*y;   
 		}
 
-		(*x)=((*x) + 17) % 17;   // Â¹Ã™ÂµÃÃ†Ã‡?Ã‡ Â³Â¡Â¿Â¡Â¼Â­ Â¿Ã²ÃÃ·?ÃŒÂ¸Ã© Â¹ÃÂ´Ã«Ã†Ã­ Â³Â¡?Â¸Â·Ã Â°Â¨
+		(*x)=((*x) + 17) % 17;   // ¹ÙµÏÆÇÀÇ ³¡¿¡¼­ ¿òÁ÷ÀÌ¸é ¹İ´ëÆí ³¡À¸·Î °¨
 		(*y)=((*y) + 17) % 17;   
-		gotoxy(ox*2, oy);   //Ã„Â¿Â¼Â­Â°Â¡ ?ÃŒÂµÂ¿ÂµÃ‡Â°Ã­ Â¿Ã¸Â·Â¡ ?Ã–Â´Ã¸ ÂºÃÂºÃÂ¿Â¡Â´Ã‚Â´Ã™Â½Ãƒ Â¹Ã™ÂµÃÃ†Ã‡ Â¸Ã°Â¾Ã§?Â» ÃƒÂ¤Â¿Ã²
-		cout<<pan[oy][ox];  // ÃˆÂ­Â»Ã¬Ã‡Â¥Â·Ã ?ÃŒÂµÂ¿Ã‡ÃÂ´Ã‚ ?Â§Ã„Â¡ 
+		gotoxy(ox*2, oy);   //Ä¿¼­°¡ ÀÌµ¿µÇ°í ¿ø·¡ ÀÖ´ø ºÎºĞ¿¡´Â´Ù½Ã ¹ÙµÏÆÇ ¸ğ¾çÀ» Ã¤¿ò
+		cout<<pan[oy][ox];  // È­»ìÇ¥·Î ÀÌµ¿ÇÏ´Â À§Ä¡ 
 		gotoxy((*x)*2, *y);  
-		cout<<"Â¢Ã";   //Ã‡Ã¶?Ã§ ?Â§Ã„Â¡Ã‡ÃÂ°Ã­ ?Ã–Â´Ã‚ ÃÃ‚Ã‡Â¥Â»Ã³Â¿Â¡ Â¢Ã ÃƒÃ¢Â·Ã‚
+		cout<<"¢Á";   //ÇöÀç À§Ä¡ÇÏ°í ÀÖ´Â ÁÂÇ¥»ó¿¡ ¢Á Ãâ·Â
 	}
 
 }
@@ -43,33 +43,4 @@ void move::first_move(int *y, int *x)
 	srand(time(NULL));
 	*x=rand()%7+5;//5~11
 	*y=rand()%7+5;//5~11
-}
-void move::input(int *y, int *x, int turn)
-{
-	int x_in, y_in;
-	char player[3][3] = { "", "¡Ü", "¡Û" };
-	while(1)
-	{
-		setting::gotoxy(0, 22);
-		cout<<"input"<< player[turn]<<"'s next position"<<endl;
-		cout<<"<x y> : ";
-		cin>>x_in>>y_in;
-		//check varified num
-		if(x_in>0 && x_in<18 && y_in>0 && y_in<18)
-		{
-			*x=x_in-1; *y=y_in-1;
-			setting::gotoxy(0, 23);
-			cout<<"                 ";
-			setting::gotoxy(0, 24);
-			cout<<"                            ";
-			break;
-		}
-		else
-		{
-			setting::gotoxy(0, 24);
-			cout<<"please input valied position";
-			setting::gotoxy(0, 23);
-			cout<<"                 ";
-		}
-	}
 }
