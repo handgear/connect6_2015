@@ -1,5 +1,4 @@
-﻿
-#include "connect.h"
+﻿#include "connect.h"
  
 void setting::Cursor() //cursor setting
 {   

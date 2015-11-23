@@ -14,14 +14,14 @@ using namespace std;
 
 class setting
 {
-public :
+public:
 	void Cursor();
 	void gotoxy(int x, int y);
 };
 
 class move : public setting
 {
-public :
+public:
 	char pan[17][17][3];
 	void go(int *y, int *x);
 	void first_move(int *y, int *x);
@@ -30,30 +30,30 @@ public :
 
 class referee : public setting
 {
-private :
-	int x,y;
+private:
+	int x, y;
 	int count;
 	char ans;
-	int two,three,four,five,two1,three1,four1,five1;
-	int sentfive,sentfive1;
-public :
+	int two, three, four, five, two1, three1, four1, five1;
+	int sentfive, sentfive1;
+public:
 	referee()
 	{
 		setting();  //for inheritence
-		two=three=four=five=two1=three1=four1=five1=0;
+		two = three = four = five = two1 = three1 = four1 = five1 = 0;
 	}
 	int countSeries(int x, int y, int ax, int ay);
-	int decideWinner(); 
-	int board[17][17]; 
-	int winner_Message(int turn); 
+	int decideWinner();
+	int board[17][17];
+	int winner_Message(int turn);
 
 };
-class game : public referee , public move 
+class game : public referee, public move
 {
-private :
+private:
 	int x, y, turn;
 	int turn1Cnt, turn2Cnt;
-public :
+public:
 	game()
 	{
 		referee();
