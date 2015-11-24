@@ -74,6 +74,21 @@ void game::change_turn()
 	setting::gotoxy(0, 21);   
 	cout<<stone[turn]<<"'s turn";  
 }
+void game::update_total_stone_num()
+{
+	if(turn==1) //turn==white, print num of white stone 
+		{
+			setting::gotoxy(42, 0);
+			cout <<"white Stone : "<< ++turn1Cnt;
+		}
+		else //turn==black, print num of black stone 
+		{
+			setting::gotoxy(42, 1);
+			cout << "Black Stone : "<<++turn2Cnt;
+		}
+		setting::gotoxy(42, 2);
+		cout <<"Total : "<<++totalturn; 
+}
 //print board  
 void game::map()   
 {
