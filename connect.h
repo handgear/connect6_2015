@@ -53,6 +53,7 @@ class game : public referee, public move
 private:
 	int x, y, turn;
 	int turn1Cnt, turn2Cnt;
+	int totalturn = 0, turn2 = 0; //turn2: flag for two turn
 public:
 	game()
 	{
@@ -62,6 +63,9 @@ public:
 		turn2Cnt = 0;
 	}
 	int start();
+	void initialize();
+	void change_turn();
+	void update_total_stone_num();
 	void map();
 	void pause();
 	int put(int y, int x, int turn);
