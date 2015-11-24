@@ -48,6 +48,46 @@ int game::start()
 	return winner_Message(turn^=3);   
 
 }
+int game::start_ai()
+{
+	char stone[3][3]={"","●","○"};
+	initialize();
+	while(decideWinner() == 0) //yet winner occur 
+	{   
+		if(turn2==2)
+		{//after place two stones
+			//change player   		
+			if (turn == 2)
+				turn = 1;
+			else
+				turn = 2;
+			turn2=0; //initialize flag
+			setting::gotoxy(0, 21);   
+			cout<<stone[turn]<<"'s turn";  
+		}
+
+		//else turn2++;
+		while(turn==1 && turn2<2)//user
+		{
+			go(&y, &x);
+			put(y, x, turn);
+			//input(&y, &x,turn);//input position to move		
+			update_total_stone_num();
+			turn2++;
+		}
+		while(turn==2 && turn2<2)//ai
+		{
+			go(&y, &x);
+			put(y, x, turn);
+			//input(&y, &x,turn);//input position to move		
+			update_total_stone_num();
+			turn2++;
+		}
+		
+	} 
+
+	return winner_Message(turn^=3); 
+}
 void game::initialize()//draw board and put first stone
 {
 	map(); 
@@ -56,6 +96,7 @@ void game::initialize()//draw board and put first stone
 	setting::Cursor(); 
 	first_move(&y, &x); //first randum move
 	put(y, x, turn);
+	turn=1;//next is white turn
 	//while (1);//for debug
 }
 void game::change_turn()

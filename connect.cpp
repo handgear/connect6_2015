@@ -23,20 +23,9 @@ void main()
 	switch(button)
 	{
 	case 1: //AI
-		G1.initialize();
-		while(decideWinner() == 0) //yet winner occur 
-		{   
-			G1.change_turn();
-			while(!put(y, x, turn))  //
-			{   
-				go(&y, &x);   //
-				//input(&y, &x,turn);//input position to move		
-			} 
-			G1.update_total_stone_num();
-		} 
-
-		// return winner_Message(turn^=3);
-		while(1);//for debug
+		while(G1.start_ai());
+		main();
+		//while(1);//for debug
 		break;
 	case 2: //use while, after exe start, goto main when game over
 		while(G1.start());

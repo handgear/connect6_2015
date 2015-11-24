@@ -63,6 +63,7 @@ public:
 		turn2Cnt = 0;
 	}
 	int start();
+	int start_ai();
 	void initialize();
 	void change_turn();
 	void update_total_stone_num();
