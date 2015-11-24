@@ -4,6 +4,7 @@
 void main()
 { 
 	game G1;
+	ai test_ai;
 	//game class def
 	int button;
 	// cout<<"-------------------------------------------------------------------------------"<<endl;
@@ -34,6 +35,11 @@ void main()
 	case 3: //network P2P
 		break;
 	case 4: //setting menu
+		break;
+	case 5: //for test
+		test_ai.place_point();
+		test_ai.print_point_board();
+		while(1);
 		break;
 	default:
 		cout<<"select number"<<endl;

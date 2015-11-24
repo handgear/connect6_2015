@@ -48,6 +48,22 @@ public:
 	int winner_Message(int turn);
 
 };
+
+class ai : public referee
+{
+private:
+	int point_board[17][17][2];
+public:
+	ai()
+	{
+		referee();
+		memset(point_board, 0, sizeof(int)*17*17*2);
+	}
+void point_initialize();
+void place_point();
+void print_point_board();
+};
+
 class game : public referee, public move
 {
 private:
