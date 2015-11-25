@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include <iostream>
 #include <stdlib.h>
 #include <string.h>
@@ -53,13 +53,13 @@ class ai : public referee
 {
 private:
 	int point_board[17][17][2];
+	int highest_point_x, highest_point_y;
 public:
 	ai()
 	{
 		referee();
 		memset(point_board, 0, sizeof(int)*17*17*2);
 	}
-void point_initialize();
 void place_point();
 void print_point_board();
 };
