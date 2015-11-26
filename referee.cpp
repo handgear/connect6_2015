@@ -1,11 +1,11 @@
-﻿#include "connect.h"
+#include "connect.h"
 
 int referee::countSeries(int x, int y, int ax, int ay)
 {
 	int sx = x, sy = y;  // 
 	int total = 0; //
 	for (int i = 0; i<6; i++){ // 
-		if ((board[sy][sx] == board[y][x]) && (board[sy][sx] != 0)){
+		if (x<17 && y<17 && (board[sy][sx] == board[y][x]) && (board[sy][sx] != 0)){
 			total++; // 
 			x += ax; // 
 			y += ay; // 
