@@ -6,9 +6,9 @@ int referee::countSeries(int x, int y, int ax, int ay)
 	int total = 0; //
 	for (int i = 0; i<6; i++){ // 
 		if (x<17 && y<17 && (board[sy][sx] == board[y][x]) && (board[sy][sx] != 0)){
-			total++; // 
-			x += ax; // 
-			y += ay; // 
+			total++; 
+			x += ax; //x>=0 && y>=0 
+			y += ay; 
 		}
 		else
 			return total; //
