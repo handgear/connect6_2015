@@ -68,11 +68,11 @@ void ai::place_point()
 			//if this code can't accsess to x+5, need to be modifiy
 			//turn==2 : black stone : AI
 			//five
-			if (temp == 5 && board[y][x - 1] == 0 && board[y][x] == 2 && board[y][x+5] == 0 && x!=0 && x!=12)//0222220
+			if (temp == 5 && board[y][x - 1] == 0 && board[y][x] == 2 && board[y][x+5] == 0 && x!=0 && x<12)//0222220
 			{
 					point_board[y][x-1][1]=five_two_BK; point_board[y][x+5][1]=five_two_BK;
 			}
-			else if(temp == 5 && board[y][x - 1] == 1 && board[y][x] == 2 && board[y][x+5] == 0 && x!=12)//1222220
+			else if(temp == 5 && board[y][x - 1] == 1 && board[y][x] == 2 && board[y][x+5] == 0 && x<12)//1222220
 			{
 					point_board[y][x+5][1]=five_one_BK;
 			}
@@ -85,11 +85,11 @@ void ai::place_point()
 			else if(temp==5 && x==12 && board[y][x] == 2 && board[y][11] == 0)//022222|
 				point_board[y][11][1]=five_one_BK;
 			//four
-			if (temp == 4 && board[y][x - 1] == 0 && board[y][x] == 2 && board[y][x+4] == 0 && x!=0 && x!=13)//022220
+			if (temp == 4 && board[y][x - 1] == 0 && board[y][x] == 2 && board[y][x+4] == 0 && x!=0 && x<13)//022220
 			{
 					point_board[y][x-1][1]=four_two_BK; point_board[y][x+4][1]=four_two_BK;
 			}
-			else if(temp == 4 && board[y][x - 1] == 1 && board[y][x] == 2 && board[y][x+4] == 0 && x!=13)//122220
+			else if(temp == 4 && board[y][x - 1] == 1 && board[y][x] == 2 && board[y][x+4] == 0 && x<13)//122220
 			{
 					point_board[y][x+4][1]=four_one_BK;
 			}
@@ -102,11 +102,11 @@ void ai::place_point()
 			else if(temp==4 && x==13 && board[y][x] == 2 && board[y][12] == 0)//02222|
 				point_board[y][12][1]=four_one_BK;
 			//three
-			if (temp == 3 && board[y][x - 1] == 0 && board[y][x] == 2 && board[y][x+3] == 0 && x!=0 && x!=14)//02220
+			if (temp == 3 && board[y][x - 1] == 0 && board[y][x] == 2 && board[y][x+3] == 0 && x!=0 && x<14)//02220
 			{
 					point_board[y][x-1][1]=three_two_BK; point_board[y][x+3][1]=three_two_BK;
 			}
-			else if(temp == 3 && board[y][x - 1] == 1 && board[y][x] == 2 && board[y][x+3] == 0 && x!=14)//12220
+			else if(temp == 3 && board[y][x - 1] == 1 && board[y][x] == 2 && board[y][x+3] == 0 && x<14)//12220
 			{
 					point_board[y][x+3][1]=three_one_BK;
 			}
@@ -119,11 +119,11 @@ void ai::place_point()
 			else if(temp==3 && x==14 && board[y][x] == 2 && board[y][13] == 0)//0222|
 				point_board[y][13][1]=three_one_BK;
 			//two
-			if (temp == 2 && board[y][x - 1] == 0 && board[y][x] == 2 && board[y][x+2] == 0 && x!=0 && x!=15)//0220
+			if (temp == 2 && board[y][x - 1] == 0 && board[y][x] == 2 && board[y][x+2] == 0 && x!=0 && x<15)//0220
 			{
 					point_board[y][x-1][1]=two_two_BK; point_board[y][x+2][1]=two_two_BK;
 			}
-			else if(temp == 2 && board[y][x - 1] == 1 && board[y][x] == 2 && board[y][x+2] == 0 && x!=15)//1220
+			else if(temp == 2 && board[y][x - 1] == 1 && board[y][x] == 2 && board[y][x+2] == 0 && x<15)//1220
 			{
 					point_board[y][x+2][1]=two_one_BK;
 			}
