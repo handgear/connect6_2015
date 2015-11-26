@@ -1,12 +1,12 @@
-#include "connect.h"
+﻿#include "connect.h"
 
-//?Ìµ¿ÇÏ±â
-void move::go(int *y, int *x) // ÇÔ¼ö³»¿¡¼­ °ª ¼öÁ¤ (Æ÷?ÎÅÍ)   
+//
+void move::go(int *y, int *x)
 {   
-	int oy=*y, ox=*x;   // ox, oy´Â ?Ì?ü ÁÂÇ¥ 
-	char input;    // Å°º¸µå·Î ¹Þ´Â input
+	int oy=*y, ox=*x;  
+	char input;   
 
-	while((input=_getch()) != ENTER)   // Enter Ä¡±â ?ü±îÁö ?Ô·Â¿¡ ¸Â°Ô ?§Ä¡ ?Ìµ¿
+	while((input=_getch()) != ENTER)  
 	{   
 		if(input == UP)   
 		{   
@@ -29,12 +29,12 @@ void move::go(int *y, int *x) // ÇÔ¼ö³»¿¡¼­ °ª ¼öÁ¤ (Æ÷?ÎÅÍ
 			oy=*y;   
 		}
 
-		(*x)=((*x) + 17) % 17;   // ¹ÙµÏÆÇ?Ç ³¡¿¡¼­ ¿òÁ÷?Ì¸é ¹Ý´ëÆí ³¡?¸·Î °¨
+		(*x)=((*x) + 17) % 17;  
 		(*y)=((*y) + 17) % 17;   
-		gotoxy(ox*2, oy);   //Ä¿¼­°¡ ?Ìµ¿µÇ°í ¿ø·¡ ?Ö´ø ºÎºÐ¿¡´Â´Ù½Ã ¹ÙµÏÆÇ ¸ð¾ç?» Ã¤¿ò
-		cout<<pan[oy][ox];  // È­»ìÇ¥·Î ?Ìµ¿ÇÏ´Â ?§Ä¡ 
+		gotoxy(ox*2, oy);   //
+		cout<<pan[oy][ox];  // 
 		gotoxy((*x)*2, *y);  
-		cout<<"¢Á";   //Çö?ç ?§Ä¡ÇÏ°í ?Ö´Â ÁÂÇ¥»ó¿¡ ¢Á Ãâ·Â
+		cout<<"◎";   //
 	}
 
 }
@@ -47,7 +47,7 @@ void move::first_move(int *y, int *x)
 void move::input(int *y, int *x, int turn)
 {
 	int x_in, y_in;
-	char player[3][3] = { "", "��", "��" };
+	char player[3][3] = { "", "●", "○" };
 	while(1)
 	{
 		setting::gotoxy(0, 22);

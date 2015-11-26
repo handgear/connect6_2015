@@ -1,9 +1,10 @@
-#include "connect.h"
+﻿#include "connect.h"
 
 
 void main()
 { 
 	game G1;
+	ai test_ai;
 	//game class def
 	int button;
 	// cout<<"-------------------------------------------------------------------------------"<<endl;
@@ -23,6 +24,9 @@ void main()
 	switch(button)
 	{
 	case 1: //AI
+		while(G1.start_ai());
+		main();
+		//while(1);//for debug
 		break;
 	case 2: //use while, after exe start, goto main when game over
 		while(G1.start());
@@ -31,6 +35,11 @@ void main()
 	case 3: //network P2P
 		break;
 	case 4: //setting menu
+		break;
+	case 5: //for test
+		test_ai.place_point();
+		test_ai.print_point_board();
+		while(1);
 		break;
 	default:
 		cout<<"select number"<<endl;

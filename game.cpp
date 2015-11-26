@@ -1,10 +1,10 @@
-
+ï»¿
 #include "connect.h"
 
 
 int game::start() 
 {  
-	char stone[3][3]={"","¡Ü","¡Û"}; // initialize stone
+	char stone[3][3]={"","â—","â—‹"}; // initialize stone
 	map(); 
 	//turn==1: white, turn==2: black
 	int totalturn = 0, turn2 = 0; //turn2: flag for two turn
@@ -16,23 +16,27 @@ int game::start()
 	{   
 		if(turn2==1)
 		{//after place two stones
-			turn^=3; //change player   			
+			//change player   		
+			if (turn == 2)
+				turn = 1;
+			else
+				turn = 2;
 			turn2=0; //initialize flag
 		}
 		else turn2++;
 		setting::gotoxy(0, 21);   
 		cout<<stone[turn]<<"'s turn";  
-		while(!put(y, x, turn))  //put ÇÔ¼ö¿¡¼­ enterÄ¡±âÀü±îÁö Ä¿¼­´ë·Î ÀÌµ¿.
+		while(!put(y, x, turn))  //
 		{   
-			//go(&y, &x);   //call by reference·Î go ÇÔ¼ö¿¡¼­ ¹ŞÀº ÁÂÇ¥°ªÀ¸·Î ÀÌµ¿,
-			input(&y, &x,turn);//input position to move		
+			go(&y, &x);   //
+			//input(&y, &x,turn);//input position to move		
 		} 
-		if(turn==1) //turn==white, print num of white stone 
+		if(turn==1) //turn==white, print total num of white stone 
 		{
 			setting::gotoxy(42, 0);
 			cout <<"white Stone : "<< ++turn1Cnt;
 		}
-		else //turn==black, print num of black stone 
+		else //turn==black, print total num of black stone 
 		{
 			setting::gotoxy(42, 1);
 			cout << "Black Stone : "<<++turn2Cnt;
@@ -44,34 +48,115 @@ int game::start()
 	return winner_Message(turn^=3);   
 
 }
+int game::start_ai()
+{
+	char stone[3][3]={"","â—","â—‹"};
+	initialize();
+	while(decideWinner() == 0) //yet winner occur 
+	{   
+		if(turn2==2)
+		{//after place two stones
+			//change player   		
+			if (turn == 2)
+				turn = 1;
+			else
+				turn = 2;
+			turn2=0; //initialize flag
+			setting::gotoxy(0, 21);   
+			cout<<stone[turn]<<"'s turn";  
+		}
 
+		//else turn2++;
+		while(turn==1 && turn2<2)//user
+		{
+			go(&y, &x);
+			put(y, x, turn);
+			//input(&y, &x,turn);//input position to move		
+			update_total_stone_num();
+			turn2++;
+		}
+		while(turn==2 && turn2<2)//ai
+		{
+			go(&y, &x);
+			put(y, x, turn);
+			//input(&y, &x,turn);//input position to move		
+			update_total_stone_num();
+			turn2++;
+		}
+		
+	} 
+
+	return winner_Message(turn^=3); 
+}
+void game::initialize()//draw board and put first stone
+{
+	map(); 
+	//turn==1: white, turn==2: black
+	turn = 2;  //first turn is black
+	setting::Cursor(); 
+	first_move(&y, &x); //first randum move
+	put(y, x, turn);
+	turn=1;//next is white turn
+	//while (1);//for debug
+}
+void game::change_turn()
+{
+	char stone[3][3]={"","â—","â—‹"}; // initialize stone
+	if(turn2==1)
+	{//after place two stones
+		//change player   		
+		if (turn == 2)
+			turn = 1;
+		else
+			turn = 2;
+		turn2=0; //initialize flag
+	}
+	else turn2++;
+	setting::gotoxy(0, 21);   
+	cout<<stone[turn]<<"'s turn";  
+}
+void game::update_total_stone_num()
+{
+	if(turn==1) //turn==white, print num of white stone 
+		{
+			setting::gotoxy(42, 0);
+			cout <<"white Stone : "<< ++turn1Cnt;
+		}
+		else //turn==black, print num of black stone 
+		{
+			setting::gotoxy(42, 1);
+			cout << "Black Stone : "<<++turn2Cnt;
+		}
+		setting::gotoxy(42, 2);
+		cout <<"Total : "<<++totalturn; 
+}
 //print board  
 void game::map()   
 {
-	memset(board, 0, sizeof(int)*17*17); //17x17ÀÇ memset¹è¿­À» ¸¸µé¾îÁÖ°í 0À¸·Î ÃÊ±âÈ­ ÇØÁØ´Ù.
+	memset(board, 0, sizeof(int)*17*17); //
 	//corner
-	strcpy(pan[0][0], "¦£");
-	strcpy(pan[0][16] ,"¦¤");   
-	strcpy(pan[16][0],"¦¦");
-	strcpy(pan[16][16],"¦¥");   
+	strcpy(pan[0][0], "â”Œ");
+	strcpy(pan[0][16] ,"â”");   
+	strcpy(pan[16][0],"â””");
+	strcpy(pan[16][16],"â”˜");   
 	//side
 	for(y=1; y<16; y++)   
 	{   
-		strcpy(pan[y][0], "¦§");
-		strcpy(pan[y][16],"¦©");
+		strcpy(pan[y][0], "â”œ");
+		strcpy(pan[y][16],"â”¤");
 	}   
 	//bottom and top
 	for(x=1; x<16; x++)   
 	{   
-		strcpy(pan[0][x], "¦¨");   
-		strcpy(pan[16][x],"¦ª");   
+		strcpy(pan[0][x], "â”¬");   
+		strcpy(pan[16][x],"â”´");   
 	} 
 	//else
 	for(y=1; y<16; y++)     
 		for(x=1; x<16; x++)         
-			strcpy(pan[y][x],"¦«");   
+			strcpy(pan[y][x],"â”¼");   
 	
-	system("CLS"); //°¢°¢ÀÇ ºÎºĞÀ» for¹®À» ÀÌ¿ëÇØ Ã¤¿î ¹è¿­À» ÀÌÁ¦ ÇÑ¹ø¿¡ Ãâ·ÂÇÏ±â À§ÇØ È­¸é¿¡ ÀÖ´Â °ªÀ» Áö¿öÁØ´Ù.
+	system("CLS"); //
 	for(y=0; y<17; y++,cout<<endl)
 		for(x=0; x<17; x++)   
 			cout<<pan[y][x];
@@ -109,23 +194,23 @@ void game::map()
 }
 int game::put(int y, int x, int turn)   
 {
-	char stone[3][3]={"","¡Ü","¡Û"};   
-	if(board[y][x] == 0)   //ÁöÁ¤ÇÏ°íÀÖ´Â ¹ÙµÏ¹İÀÇ À§Ä¡¿¡ ¹ÙµÏµ¹ÀÌ ¾øÀ»°æ¿ì if¹®À¸·Î µé¾î°£´Ù.
+	char stone[3][3]={"","â—","â—‹"};   
+	if(board[y][x] == 0)   //
 	{   
 
-		board[y][x]=turn;   //¹ÙµÏÆÇ À§Ä¡¿¡ ÇöÀç turn µ¹À» ÀÔ·ÂÇÑ´Ù.
-		strcpy(pan[y][x], stone[turn]);   //ÆÇ ¸ğ¾çÀ» ÇöÀç ÅÏÀÇ µ¹·Î º¯È¯½ÃÅ²´Ù.
+		board[y][x]=turn;   //
+		strcpy(pan[y][x], stone[turn]);   //
 		setting::gotoxy(x*2, y); 
 		cout<<stone[turn];   
-		//º¯È¯µÈ ÁÂÇ¥·Î ÀÌµ¿ÇÏ¿© µ¹¸ğ¾çÀ» Ãâ·ÂÇÑ´Ù.
+		//
 		return 1;   
 	}   
 	return 0;   
 }
 void game::pause() 
 {
-	_getch();  // ¾Æ¹« Å°³ª 1°³ ÀÔ·Â ¹Ş±â
-	puts(""); // ÁÙ¹Ù²Ş
+	_getch();  // 
+	puts(""); //
 }
 
 
