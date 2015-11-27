@@ -1,5 +1,6 @@
 ﻿#include "connect.h"
 
+int game_ai();
 
 void main()
 { 
@@ -37,6 +38,7 @@ void main()
 	case 4: //setting menu
 		break;
 	case 5: //for test
+		game_ai();
 		test_ai.place_point();
 		test_ai.print_point_board();
 		while(1);
@@ -47,4 +49,11 @@ void main()
 		system("cls"); 
 		main(); 
 	}
+}
+
+int game_ai()
+{
+	game G2;
+	while(G2.start_ai());
+	return 0;
 }
