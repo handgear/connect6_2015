@@ -77,9 +77,10 @@ int game::start_ai()
 		}
 		while(turn==2 && turn2<2)//ai
 		{
-			go(&y, &x);
-			put(y, x, turn);
-			//input(&y, &x,turn);//input position to move		
+			
+			// ai->place_point();
+			// ai->place_stone(turn);
+
 			update_total_stone_num();
 			turn2++;
 		}

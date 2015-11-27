@@ -49,21 +49,6 @@ public:
 
 };
 
-class ai : public referee
-{
-private:
-	int point_board[17][17][2];
-	int highest_point_x, highest_point_y;
-public:
-	ai()
-	{
-		referee();
-		memset(point_board, 0, sizeof(int)*17*17*2);
-	}
-void place_point();
-void print_point_board();
-};
-
 class game : public referee, public move
 {
 private:
@@ -86,4 +71,21 @@ public:
 	void map();
 	void pause();
 	int put(int y, int x, int turn);
+};
+
+class ai :  public game//public referee
+{
+private:
+	int point_board[17][17][2];
+	// int highest_point_x, highest_point_y;
+public:
+	ai()
+	{
+		// referee();
+		game();
+		memset(point_board, 0, sizeof(int)*17*17*2);
+	}
+void place_point();
+void place_stone(int turn);
+void print_point_board();
 };
