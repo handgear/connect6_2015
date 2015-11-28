@@ -10,15 +10,6 @@ void main(int argc, char *argv[])
 	ai test_ai2;
 	//game class def
 	int button;
-	// cout<<"-------------------------------------------------------------------------------"<<endl;
-	// cout<<"==============================================================================="<<endl;
-	// cout<<"==    66666    CCCCC    OOOOO    N NNN    N NNN    EEEEE    CCCCC    TTTTT   =="<<endl;
-	// cout<<"==    66       CC       OO  O    NN  N    NN  N    EE       CC        TT     =="<<endl;
-	// cout<<"==    66666    CC       OO  O    NN  N    NN  N    EEEEE    CC        TT     =="<<endl;
-	// cout<<"==    66  6    CC       OO  O    NN  N    NN  N    EE       CC        TT     =="<<endl;
-	// cout<<"==    66666    CCCCC    OOOOO    NN  N    NN  N    EEEEE    CCCCC     TT     =="<<endl;
-	// cout<<"==============================================================================="<<endl;
-	// cout<<"==============================================================================="<<endl;
 	cout<<"                               1) 1P play"<<endl;
 	cout<<"                               2) 2P play"<<endl;
 	cout<<"                               3) network P2P"<<endl;
@@ -42,7 +33,8 @@ void main(int argc, char *argv[])
 	case 4: //setting menu
 		break;
 	case 5: //for test
-		game_ai();
+		while(game_ai());
+		main(argc, argv);
 		// test_ai2.place_point();
 		// test_ai2.place_stone(2);
 		// test_ai2.print_point_board();
@@ -62,6 +54,7 @@ int game_ai()
 	setting set;
 	ai test_ai;
 	char stone[3][3]={"","●","○"};
+	int temp_first=0;
 	test_ai.initialize();
 	while(test_ai.decideWinner() == 0) //yet winner occur 
 	{   
@@ -81,22 +74,27 @@ int game_ai()
 		while(test_ai.turn==1 && test_ai.turn2<2)//user
 		{
 			test_ai.go(&test_ai.y, &test_ai.x);
-			test_ai.put(test_ai.y, test_ai.x, test_ai.turn);
 			//input(&y, &x,turn);//input position to move		
+			test_ai.put(test_ai.y, test_ai.x, test_ai.turn);
 			test_ai.update_total_stone_num();
 			test_ai.turn2++;
 		}
 		while(test_ai.turn==2 && test_ai.turn2<2)//ai
 		{
-			
+			if(temp_first==0)
+			{
+				test_ai.place_first_stone(test_ai.turn);
+				temp_first=1;
+				test_ai.turn2++;
+			}
 			test_ai.place_point();
 			test_ai.place_stone(test_ai.turn);
-			//test_ai.print_point_board();
+			
 			test_ai.update_total_stone_num();
 			test_ai.turn2++;
 		}
 	}
-	return 0;
+	return test_ai.winner_Message(test_ai.turn^=3);
 }
 
 int Socket(int argc, char *argv[]){

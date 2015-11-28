@@ -20,15 +20,15 @@ void ai::place_point()
 	enum POINT//set weight point
 	{
 		//connedted_unblocked number
-		five_two_WH=9, five_one_WH=5,
-		four_two_WH=8, four_one_WH=4,
-		three_two_WH=7, three_one_WH=3,
-		two_two_WH=6, two_one_WH=2,
+		five_two_WH=70000, five_one_WH=70000,
+		four_two_WH=59001, four_one_WH=50003,
+		three_two_WH=999, three_one_WH=997,
+		two_two_WH=33, two_one_WH=23,
 
-		five_two_BK=9, five_one_BK=5,
-		four_two_BK=8, four_one_BK=4,
-		three_two_BK=7, three_one_BK=3,
-		two_two_BK=6, two_one_BK=2,
+		five_two_BK=99999, five_one_BK=99007,
+		four_two_BK=90005, four_one_BK=90003,
+		three_two_BK=749, three_one_BK=337,
+		two_two_BK=37, two_one_BK=29,
 	};
 	int temp = 0;
 	//for debug
@@ -643,11 +643,25 @@ void ai::place_point()
 			
 		}
 	}
+	for(int y=0; y<17; y++)
+		for(int x=0; x<17; x++)   
+			if(board[y][x]==1 || board[y][x]==2)
+			{
+				point_board[y][x][0]=0; point_board[y][x][1]=0;	
+			}
+
+}
+void ai::place_first_stone(int turn)
+{
+	put(1,1,turn);
+
 }
 void ai::place_stone(int turn)
 {
-	int max_x=0, max_y=0, max_point=0;
+	int max_x=0, max_y=0, max_point=0; 
+	int sec_max_x=0, sec_max_y=0, sec_max_point=0;
 	int temp_board[17][17];
+	int temp=2;
 
 	memset(temp_board, 0, sizeof(int)*17*17);//initialize
 	for(int y=0; y<17; y++)
@@ -656,16 +670,33 @@ void ai::place_stone(int turn)
 
 	for(int y=0; y<17; y++)
 		for(int x=0; x<17; x++)   
-			if(max_point<temp_board[y][x])
+			if(max_point<temp_board[y][x] && board[y][x]==0)
 			{
 				max_point=temp_board[y][x]; max_x=x; max_y=y;	
 			}
+
+	for(int y=0; y<17; y++)
+		for(int x=0; x<17; x++)   
+			if(sec_max_point<temp_board[y][x] && board[y][x]==0 &&  max_x!=x && max_y!=y)
+			{
+				sec_max_point=temp_board[y][x]; sec_max_x=x; sec_max_y=y;	
+			}
+
 	//cout<<max_x<<max_y<<endl;//for debug	
-	while(!put(max_x,max_y,turn));	
+			temp=put(max_y,max_x,turn);
+			if(temp==0)
+				temp=put(sec_max_y,sec_max_x,turn);
+			if(temp==0)
+				while(!put(max_y,max_x,turn))
+					max_x++;
+			if(temp==2)
+				cout<<"error!!!"<<endl;
+	// while(!put(max_x,max_y,turn));	
 	
 }
 void ai::print_point_board()
 {
+	setting::gotoxy(0, 45); 
 	for(int y=0; y<17; y++,cout<<endl)
 		for(int x=0; x<17; x++)   
 			cout<<board[y][x];
