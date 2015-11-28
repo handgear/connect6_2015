@@ -5,16 +5,11 @@
 int game::start() 
 {  
 	char stone[3][3]={"","●","○"}; // initialize stone
-	map(); 
-	//turn==1: white, turn==2: black
 	int totalturn = 0, turn2 = 0; //turn2: flag for two turn
-	turn = 2;  //first turn is black
-	setting::Cursor(); 
-	first_move(&y, &x); //first randum move
-	
+	initialize();
 	while(decideWinner() == 0) //yet winner occur 
 	{   
-		if(turn2==1)
+		if(turn2==2)
 		{//after place two stones
 			//change player   		
 			if (turn == 2)
@@ -22,15 +17,27 @@ int game::start()
 			else
 				turn = 2;
 			turn2=0; //initialize flag
+			setting::gotoxy(0, 21);   
+		cout<<stone[turn]<<"'s turn"; 
 		}
-		else turn2++;
-		setting::gotoxy(0, 21);   
-		cout<<stone[turn]<<"'s turn";  
-		while(!put(y, x, turn))  //
-		{   
-			go(&y, &x);   //
-			//input(&y, &x,turn);//input position to move		
-		} 
+	
+		while(1)
+		{
+			input(&y, &x,turn);//input position to move
+			if(board[y][x]==1 || board[y][x]==2)
+			{
+				setting::gotoxy(0, 24);
+				cout<<"please input valied position";
+				setting::gotoxy(0, 23);
+				cout<<"                 ";	
+			}
+			else
+				break;	
+		}
+		// go(&y, &x); //for debug
+		put(y, x, turn); 
+		turn2++;
+		
 		if(turn==1) //turn==white, print total num of white stone 
 		{
 			setting::gotoxy(42, 0);
