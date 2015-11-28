@@ -42,8 +42,6 @@ int referee::decideWinner() //
 				three1++;
 			else if (temp == 2 && ((board[y][x - 1] != board[y][x]) || x == 0) && board[y][x] == 1)
 				two1++;
-			// 
-			//
 			temp = countSeries(x, y, 0, 1);
 			if (temp == 6 && ((board[y - 1][x] != board[y][x]) || y == 0)) //
 				return 1;
@@ -63,8 +61,6 @@ int referee::decideWinner() //
 				three1++;
 			else if (temp == 2 && ((board[y - 1][x] != board[y][x]) || y == 0) && board[y][x] == 1)
 				two1++;
-			// 
-			//
 			temp = countSeries(x, y, 1, 1);
 			if (temp == 6 && ((board[y - 1][x - 1] != board[y][x]) || (x == 0 && y == 0))) //
 				return 1;
@@ -84,8 +80,6 @@ int referee::decideWinner() //
 				three1++;
 			else if (temp == 2 && ((board[y - 1][x - 1] != board[y][x]) || (x == 0 && y == 0)) && board[y][x] == 1)
 				two1++;
-			// 
-			//
 			temp = countSeries(x, y, -1, 1);
 			if (temp == 6 && ((board[y - 1][x + 1] != board[y][x]) || (x == 16 && y == 0)))  //
 				return 1;
@@ -105,8 +99,6 @@ int referee::decideWinner() //
 				three1++;
 			else if (temp == 2 && ((board[y - 1][x + 1] != board[y][x]) || (x == 16 && y == 0)) && board[y][x] == 1)
 				two1++;
-			//
-			//
 		}
 	}
 	gotoxy(42, 3);
@@ -117,18 +109,10 @@ int referee::decideWinner() //
 	cout << "connect4 : black - " << four << " white - " << four1;
 	gotoxy(42, 6);
 	cout << "connect5 : black - " << five << " white - " << five1;
-	//
+
 	sentfive = five;
 	sentfive1 = five1;
-	//
-	five = 0;
-	four = 0;
-	three = 0;
-	two = 0;
-	five1 = 0;
-	four1 = 0;
-	three1 = 0;
-	two1 = 0;
+	five = 0; four = 0; three = 0; two = 0; five1 = 0; four1 = 0; three1 = 0; two1 = 0;
 	//
 	return 0;
 }
@@ -136,9 +120,7 @@ int referee::decideWinner() //
 
 int referee::winner_Message(int turn)
 {
-	// player[2] = "●";
 	//const wchar_t * player[3] = { L"", L"○", L"●" };
-
 	gotoxy(42, 6);
 	if (turn == 2)
 	{
@@ -153,9 +135,9 @@ int referee::winner_Message(int turn)
 
 	gotoxy(0, 21);
 	if (turn == 1)
-		cout << "○'s WIN. Try again? (y,n)";
+		cout << "Black's WIN. Try again? (y,n)";
 	if (turn == 2)
-		cout << "●'s WIN. Try again? (y,n)";
+		cout << "White's WIN. Try again? (y,n)";
 
 	fflush(stdin);
 	cin >> ans;
