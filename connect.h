@@ -71,13 +71,13 @@ public:
 	int friend Socket(int argc, char *argv[]);
 	int start_network(int gameMode, MySocket& player, game& gameData);
 	int start();
-	int start_ai();
+	// int start_ai();
 	void initialize();
 	void change_turn();
 	void update_total_stone_num();
 	void map();
 	void pause();
-	int put(int y, int x, int turn);
+	int put(int y_, int x_, int turn);
 };
 
 class ai :  public game//public referee

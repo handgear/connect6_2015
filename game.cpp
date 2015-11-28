@@ -270,15 +270,15 @@ void game::map()
 	}
 	
 }
-int game::put(int y, int x, int turn)   
+int game::put(int y_, int x_, int turn)   
 {
 	char stone[3][3]={"","●","○"};   
-	if(board[y][x] == 0)   //
+	if(board[y_][x_] == 0)   //
 	{   
-
-		board[y][x]=turn;   //
-		strcpy(pan[y][x], stone[turn]);   //
-		setting::gotoxy(x*2, y); 
+		x=x_; y=y_;
+		board[y_][x_]=turn;   //
+		strcpy(pan[y_][x_], stone[turn]);   //
+		setting::gotoxy(x_*2, y_); 
 		cout<<stone[turn];   
 		//
 		return 1;   
