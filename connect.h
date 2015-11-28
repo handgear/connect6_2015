@@ -56,10 +56,11 @@ public:
 class game : public referee, public move
 {
 private:
-	int x, y, turn;
+	
 	int turn1Cnt, turn2Cnt;
-	int totalturn = 0, turn2 = 0; //turn2: flag for two turn
+	int totalturn = 0; //turn2: flag for two turn
 public:
+	int x, y, turn, turn2 = 0;
 	game()
 	{
 		referee();

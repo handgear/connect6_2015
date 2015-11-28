@@ -57,10 +57,14 @@ void ai::place_point()
 	// for(int y=0; y<17; y++)
 	// 	for(int x=0; x<17; x++)   
 	// 		point_board[y][x][0]=board[y][x];
+
+	//initialize for re-calculate
 	for(int y=0; y<17; y++)
-		for(int x=0; x<17; x++)   
-			board[y][x]=test_board[y][x];
-	
+		for(int x=0; x<17; x++)
+		{
+			point_board[y][x][0]=0;point_board[y][x][1]=0;
+		}
+			
 	for (int y = 0; y<17; y++){
 		for (int x = 0; x<17; x++){
 			//row
@@ -656,8 +660,9 @@ void ai::place_stone(int turn)
 			{
 				max_point=temp_board[y][x]; max_x=x; max_y=y;	
 			}
-			
-	put(max_x,max_y,turn);
+	//cout<<max_x<<max_y<<endl;//for debug	
+	while(!put(max_x,max_y,turn));	
+	
 }
 void ai::print_point_board()
 {

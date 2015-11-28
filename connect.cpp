@@ -7,7 +7,7 @@ int game_ai();
 void main(int argc, char *argv[])
 { 
 	game G1;
-	ai test_ai;
+	ai test_ai2;
 	//game class def
 	int button;
 	// cout<<"-------------------------------------------------------------------------------"<<endl;
@@ -43,8 +43,9 @@ void main(int argc, char *argv[])
 		break;
 	case 5: //for test
 		game_ai();
-		test_ai.place_point();
-		test_ai.print_point_board();
+		// test_ai2.place_point();
+		// test_ai2.place_stone(2);
+		// test_ai2.print_point_board();
 		while(1);
 		break;
 	default:
@@ -57,8 +58,44 @@ void main(int argc, char *argv[])
 
 int game_ai()
 {
-	game G2;
-	while(G2.start_ai());
+	//game G2;
+	setting set;
+	ai test_ai;
+	char stone[3][3]={"","●","○"};
+	test_ai.initialize();
+	while(test_ai.decideWinner() == 0) //yet winner occur 
+	{   
+		if(test_ai.turn2==2)
+		{//after place two stones
+			//change player   		
+			if (test_ai.turn == 2)
+				test_ai.turn = 1;
+			else
+				test_ai.turn = 2;
+			test_ai.turn2=0; //initialize flag
+			set.gotoxy(0, 21);   
+			cout<<stone[test_ai.turn]<<"'s turn";  
+		}
+
+		//else turn2++;
+		while(test_ai.turn==1 && test_ai.turn2<2)//user
+		{
+			test_ai.go(&test_ai.y, &test_ai.x);
+			test_ai.put(test_ai.y, test_ai.x, test_ai.turn);
+			//input(&y, &x,turn);//input position to move		
+			test_ai.update_total_stone_num();
+			test_ai.turn2++;
+		}
+		while(test_ai.turn==2 && test_ai.turn2<2)//ai
+		{
+			
+			test_ai.place_point();
+			test_ai.place_stone(test_ai.turn);
+			//test_ai.print_point_board();
+			test_ai.update_total_stone_num();
+			test_ai.turn2++;
+		}
+	}
 	return 0;
 }
 
