@@ -1,4 +1,4 @@
-﻿
+﻿#include "MySocket.h"
 #include "connect.h"
 
 
@@ -88,6 +88,76 @@ int game::start_ai()
 	} 
 
 	return winner_Message(turn^=3); 
+}
+int game::start_network(int gameMode, MySocket& player, game& gameData) 
+{  
+	char stone[3][3]={"","●","○"}; // initialize stone
+	map(); 
+	//turn==1: white, turn==2: black
+	int totalturn = 0, turn2 = 0; //turn2: flag for two turn
+	turn = 2;  //first turn is black
+	setting::Cursor(); 
+	first_move(&y, &x); //first randum move
+	
+	while(decideWinner() == 0) //yet winner occur 
+	{  
+		
+		if(turn2==1)
+		{//after place two stones
+			//change player   		
+			if (turn == 2)
+				turn = 1;
+			else
+				turn = 2;
+			turn2=0; //initialize flag
+		}
+		else turn2++;
+		setting::gotoxy(0, 21);   
+		cout<<stone[turn]<<"'s turn";  
+		
+		while(!put(y, x, turn))  //
+		{   
+			//go(&y, &x);   //
+					
+			if (gameMode == SE){ 
+				if (turn == 2){
+					input(&y, &x, turn);//input position to move
+					player.SendData(&gameData);
+				}
+				else if (turn == 1){
+					player.RecvData(&gameData);
+				}
+				 }
+			if (gameMode == CL){
+				if (turn == 2){
+					player.RecvData(&gameData);
+				}
+				else if (turn == 1){
+					input(&y, &x, turn);//input position to move
+					player.SendData(&gameData);
+				}
+			}
+		} 
+		
+		
+		if(turn==1) //turn==white, print num of white stone 
+		{
+			setting::gotoxy(42, 0);
+			cout <<"white Stone : "<< ++turn1Cnt;
+		}
+		else //turn==black, print num of black stone 
+		{
+			setting::gotoxy(42, 1);
+			cout << "Black Stone : "<<++turn2Cnt;
+		}
+		setting::gotoxy(42, 2);
+		cout <<"Total : "<<++totalturn; 
+
+
+	}
+
+	return winner_Message(turn^=3);   
+
 }
 void game::initialize()//draw board and put first stone
 {

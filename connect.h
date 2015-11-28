@@ -3,6 +3,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <conio.h>  
+#ifndef WIN32_LEAN_AND_MEAN
+# define WIN32_LEAN_AND_MEAN
+#endif
 #include <windows.h>
 #include <time.h>
 using namespace std;
@@ -12,6 +15,7 @@ using namespace std;
 #define RIGHT 77
 #define ENTER 13
 
+class MySocket;
 class setting
 {
 public:
@@ -63,6 +67,8 @@ public:
 		turn1Cnt = 0;
 		turn2Cnt = 0;
 	}
+	int friend Socket(int argc, char *argv[]);
+	int start_network(int gameMode, MySocket& player, game& gameData);
 	int start();
 	int start_ai();
 	void initialize();
