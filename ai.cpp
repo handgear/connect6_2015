@@ -653,7 +653,53 @@ void ai::place_point()
 }
 void ai::place_first_stone(int turn)
 {
-	put(1,1,turn);
+	// put(y,x,turn);
+	int temp=0;
+	for(int y=0; y<17; y++)
+		for(int x=0; x<17; x++)
+		{
+			if(turn==2 && board[y][x]==2)//black stone && first(random) placed stone is black
+			{
+				if(board[y-1][x]!=1)//up
+				{
+					put(y+1,x,turn); temp=1;//put stone to the opposite place
+				}
+				else if(board[y-1][x+1]!=1)//up right
+				{
+					put(y+1,x-1,turn); temp=1;
+				}
+				else if(board[y][x+1]!=1)//right
+				{
+					put(y,x-1,turn); temp=1;
+				}
+				else if(board[y+1][x+1]!=1)//down right
+				{
+					put(y-1,x-1,turn); temp=1;
+				}
+				else if(board[y+1][x]!=1)//down
+				{
+					put(y-1,x,turn); temp=1;
+				}
+				else if(board[y+1][x-1]!=1)//down left
+				{
+					put(y-1,x+1,turn); temp=1;
+				}
+				else if(board[y][x-1]!=1)//left
+				{
+					put(y,x+1,turn); temp=1;
+				}
+				else if(board[y-1][x-1]!=1)//up left
+				{
+					put(y+1,x+1,turn); temp=1;
+				}
+				break;
+			}
+			if(temp==1) break;
+		}
+
+		//need to write for turn==1
+
+
 
 }
 void ai::place_stone(int turn)
@@ -682,15 +728,14 @@ void ai::place_stone(int turn)
 				sec_max_point=temp_board[y][x]; sec_max_x=x; sec_max_y=y;	
 			}
 
-	//cout<<max_x<<max_y<<endl;//for debug	
-			temp=put(max_y,max_x,turn);
-			if(temp==0)
-				temp=put(sec_max_y,sec_max_x,turn);
-			if(temp==0)
-				while(!put(max_y,max_x,turn))
-					max_x++;
-			if(temp==2)
-				cout<<"error!!!"<<endl;
+
+			if(max_point==0)
+				place_first_stone(turn);
+			else
+				put(max_y,max_x,turn);
+
+			// if(temp==2)
+			// 	cout<<"error!!!"<<endl;
 	// while(!put(max_x,max_y,turn));	
 	
 }

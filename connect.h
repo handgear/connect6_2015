@@ -93,6 +93,7 @@ public:
 		memset(point_board, 0, sizeof(int)*17*17*2);
 	}
 void place_point();
+void place_first_stone(int turn);
 void place_stone(int turn);
 void print_point_board();
 };

@@ -85,13 +85,19 @@ int game_ai()
 			{
 				test_ai.place_first_stone(test_ai.turn);
 				temp_first=1;
+				test_ai.update_total_stone_num();
+				test_ai.turn2++;
+
+			}
+			else if(temp_first==1)
+			{
+				test_ai.place_point();
+				test_ai.place_stone(test_ai.turn);
+				
+				test_ai.update_total_stone_num();
 				test_ai.turn2++;
 			}
-			test_ai.place_point();
-			test_ai.place_stone(test_ai.turn);
 			
-			test_ai.update_total_stone_num();
-			test_ai.turn2++;
 		}
 	}
 	return test_ai.winner_Message(test_ai.turn^=3);
