@@ -18,7 +18,7 @@ void main(int argc, char *argv[])
 	switch(button)
 	{
 	case 1: //AI
-		while(G1.start_ai());
+		while(game_ai());
 		main(argc, argv);
 		//while(1);//for debug
 		break;
