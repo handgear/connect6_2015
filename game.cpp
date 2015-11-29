@@ -283,6 +283,16 @@ int game::put(int y_, int x_, int turn)
 		//
 		return 1;   
 	}   
+	else if (board[y_][x_] != 0){
+		if (board[y_][x_] == 1){
+			setting::gotoxy(x_ * 2, y_);
+			cout << stone[1];
+		}
+		else{
+			setting::gotoxy(x_ * 2, y_);
+			cout << stone[2];
+		}
+	}
 	return 0;   
 }
 void game::pause() 
