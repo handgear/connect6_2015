@@ -660,35 +660,35 @@ void ai::place_first_stone(int turn)
 		{
 			if(turn==2 && board[y][x]==2)//black stone && first(random) placed stone is black
 			{
-				if(board[y-1][x]!=1)//up
+				if(board[y-1][x]!=1 && board[y+1][x]==0)//up
 				{
 					put(y+1,x,turn); temp=1;//put stone to the opposite place
 				}
-				else if(board[y-1][x+1]!=1)//up right
+				else if(board[y-1][x+1]!=1 && board[y+1][x-1]==0)//up right
 				{
 					put(y+1,x-1,turn); temp=1;
 				}
-				else if(board[y][x+1]!=1)//right
+				else if(board[y][x+1]!=1 && board[y][x-1]==0)//right
 				{
 					put(y,x-1,turn); temp=1;
 				}
-				else if(board[y+1][x+1]!=1)//down right
+				else if(board[y+1][x+1]!=1 && board[y-1][x-1]==0)//down right
 				{
 					put(y-1,x-1,turn); temp=1;
 				}
-				else if(board[y+1][x]!=1)//down
+				else if(board[y+1][x]!=1 && board[y-1][x]==0)//down
 				{
 					put(y-1,x,turn); temp=1;
 				}
-				else if(board[y+1][x-1]!=1)//down left
+				else if(board[y+1][x-1]!=1 && board[y-1][x+1]==0)//down left
 				{
 					put(y-1,x+1,turn); temp=1;
 				}
-				else if(board[y][x-1]!=1)//left
+				else if(board[y][x-1]!=1 && board[y][x+1]==0)//left
 				{
 					put(y,x+1,turn); temp=1;
 				}
-				else if(board[y-1][x-1]!=1)//up left
+				else if(board[y-1][x-1]!=1 && board[y+1][x+1]==0)//up left
 				{
 					put(y+1,x+1,turn); temp=1;
 				}
@@ -697,11 +697,55 @@ void ai::place_first_stone(int turn)
 			if(temp==1) break;
 		}
 
-		//need to write for turn==1
+	//turn==1
+
+	for(int y=0; y<17; y++)
+		for(int x=0; x<17; x++)
+		{
+			if(turn==1 && board[y][x]==1)//white stone 
+			{
+				temp=0;
+				if(board[y-1][x]!=2 && board[y+1][x]==0)//up
+				{
+					put(y+1,x,turn); temp=1;//put stone to the opposite place
+				}
+				else if(board[y-1][x+1]!=2 && board[y+1][x-1]==0)//up right
+				{
+					put(y+1,x-1,turn); temp=1;
+				}
+				else if(board[y][x+1]!=2 && board[y][x-1]==0)//right
+				{
+					put(y,x-1,turn); temp=1;
+				}
+				else if(board[y+1][x+1]!=2 && board[y-1][x-1]==0)//down right
+				{
+					put(y-1,x-1,turn); temp=1;
+				}
+				else if(board[y+1][x]!=2 && board[y-1][x]==0)//down
+				{
+					put(y-1,x,turn); temp=1;
+				}
+				else if(board[y+1][x-1]!=2 && board[y-1][x+1]==0)//down left
+				{
+					put(y-1,x+1,turn); temp=1;
+				}
+				else if(board[y][x-1]!=2 && board[y][x+1]==0)//left
+				{
+					put(y,x+1,turn); temp=1;
+				}
+				else if(board[y-1][x-1]!=2 && board[y+1][x+1]==0)//up left
+				{
+					put(y+1,x+1,turn); temp=1;
+				}
+				break;
+			}
+			if(temp==1) break;
+		}
 
 
 
 }
+
 void ai::place_stone(int turn)
 {
 	int max_x=0, max_y=0, max_point=0; 
