@@ -41,7 +41,7 @@ int game::start()
 		if(turn==1) //turn==white, print total num of white stone 
 		{
 			setting::gotoxy(42, 0);
-			cout <<"white Stone : "<< ++turn1Cnt;
+			cout <<"White Stone : "<< ++turn1Cnt;
 		}
 		else //turn==black, print total num of black stone 
 		{
@@ -150,7 +150,7 @@ int game::start_network(int gameMode, MySocket& player, game& gameData)
 		if(turn==1) //turn==white, print num of white stone 
 		{
 			setting::gotoxy(42, 0);
-			cout <<"white Stone : "<< ++turn1Cnt;
+			cout <<"White Stone : "<< ++turn1Cnt;
 		}
 		else //turn==black, print num of black stone 
 		{
@@ -175,6 +175,8 @@ void game::initialize()//draw board and put first stone
 	first_move(&y, &x); //first randum move
 	put(y, x, turn);
 	turn=1;//next is white turn
+	setting::gotoxy(42, 1);
+	cout << "Black Stone : "<<++turn2Cnt;
 	//while (1);//for debug
 }
 void game::change_turn()
@@ -198,7 +200,7 @@ void game::update_total_stone_num()
 	if(turn==1) //turn==white, print num of white stone 
 		{
 			setting::gotoxy(42, 0);
-			cout <<"white Stone : "<< ++turn1Cnt;
+			cout <<"White Stone : "<< ++turn1Cnt;
 		}
 		else //turn==black, print num of black stone 
 		{
